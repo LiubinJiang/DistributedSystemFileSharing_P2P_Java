@@ -1,0 +1,62 @@
+star
+node 0
+1 2 3 4 5 6 7 8 9;
+
+node1
+0;
+
+node2
+0;
+
+node3
+0;
+
+node4
+0;
+
+node5
+0;
+
+node6
+0;
+
+node7
+0;
+
+node8
+0;
+
+node9
+0;
+
+mesh
+
+node0
+1 4;
+
+node1
+0 5;
+
+node2
+1 6;
+
+node3
+2 7;
+
+node4
+0 5 8;
+
+node5
+1 4 6 9;
+
+node6
+2 5 7;
+
+node7
+3 6;
+
+node8
+4 9;
+
+node9
+5 8;
