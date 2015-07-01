@@ -79,7 +79,7 @@ public class Lookup {
 			result="hit 4 ";
 		}
 		//±¾µØlookup
-		
+		/*
 		if(TTL>0&&topology.equals("star")){
 			//TODO CONNET TO neighbor PEERS
 			P0Entry p40;
@@ -129,7 +129,7 @@ public class Lookup {
 				e.printStackTrace();
 			}
 			
-		}
+		}*/
 		}
 		
 		return result;

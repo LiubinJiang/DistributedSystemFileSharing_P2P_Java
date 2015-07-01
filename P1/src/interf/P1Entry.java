@@ -17,4 +17,6 @@ public interface P1Entry extends Remote {
 	public String deleteRecord(String record) throws RemoteException;
 	//
 	//public String sendMessage(String message) throws RemoteException;
+	
+	public String pushChange(String filename) throws RemoteException;
 }

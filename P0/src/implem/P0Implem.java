@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import method.Lookup;
+import method.PullMethod;
 
 //import serverMethod.ClientMethod;
 
@@ -46,6 +47,12 @@ public class P0Implem extends UnicastRemoteObject implements P0Entry {
 		Lookup lk=new Lookup();	
 		result=lk.lookupFile(messageID, TTL, filename,topology);
 		return result;
+	}
+
+	@Override
+	public String getRecord(String filename) throws RemoteException {
+		PullMethod pm=new PullMethod();
+		return pm.getVersionID(filename);
 	}
 	
 

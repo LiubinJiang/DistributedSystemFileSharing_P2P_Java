@@ -1,3 +1,8 @@
+//modified
+//add initial list
+
+
+
 package test;
 
 import implem.P0Implem;
@@ -13,18 +18,24 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
 
+import method.Download;
 import method.Lookup;
+import method.Modified;
+//import method.P2Entry;
+import method.UpdateList;
 
 //import method.UpdateFile;
 
 public class P0Prime {
+	//TODO
+	private static String serverP1="//localhost:8811/P1";
+	
 	private static String serverP0="//localhost:8810/P0";
 	private static Integer p0_id=8810;
-	//TODO
 	private static Integer node_id=0;
 	private static Integer sequenceNumber=0;
-	private static String topology="mesh";
-	private static Integer TTL=5;
+	private static String topology="star";
+	private static Integer TTL=2;
 
 	public static void main(String[] args) {		
 		try {
@@ -37,17 +48,10 @@ public class P0Prime {
 			Naming.rebind(serverP0, server0);
 			System.out.println("P0 Initialized");
 			
-			//connecting to other peers
-			System.out.println("connecting, press enter");
-			String fiddlestick=readString("$");
-			//TODO CONNET TO ALL OTHER PEERS
-			
 			//functions
+			//TODO "modified", update push list
 			while(true){
-			System.out.println("option:lookup, download, mylist");
-			//TODO
-			System.out.println("start writing");
-			System.out.println("finish");
+			System.out.println("option:lookup, download, modified");
 			String option=readString("$");
 			if(option.equals("lookup")){
 				System.out.println("filename");
@@ -56,6 +60,39 @@ public class P0Prime {
 				Lookup lk=new Lookup();
 				System.out.println(lk.lookupFile(messageID, TTL, filename, topology));
 				sequenceNumber++;
+			}
+			//TODO download 
+			if(option.equals("download")){
+				System.out.println("filename");
+				String filename=readString("$");
+				System.out.println("serverID");
+				String serverID=readString("$");
+				System.out.println("starts downloading");
+				UpdateList ul=new UpdateList();
+				//versionid=remote download
+				//need serverid, versionid, filename
+				ul.addtoList(serverID, filename, "0");
+				
+				//update push list
+			}
+			//TODO modified
+			if(option.equals("modified")){
+				System.out.println("filename");
+				String filename=readString("$");
+				Modified m=new Modified();
+				m.updateVersion(filename);
+				System.out.println(filename+" version changed:"+m.getVersionID(filename));
+		
+				//TODO remote push changes 调用别的节点的remote方法改pushlist
+				P1Entry p01;
+				try {
+					p01 = (P1Entry)Naming.lookup(serverP1);
+					p01.pushChange(filename);
+				} catch (NotBoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 			}
 		}catch (MalformedURLException e) {

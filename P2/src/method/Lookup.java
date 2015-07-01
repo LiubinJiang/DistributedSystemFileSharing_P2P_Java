@@ -81,7 +81,7 @@ public class Lookup {
 			result="hit 2 ";
 		}
 		//±¾µØlookup
-		
+		/*
 		if(TTL>0&&topology.equals("star")){
 			P0Entry p10;
 			String temp=null;
@@ -131,7 +131,7 @@ public class Lookup {
 				e.printStackTrace();
 			}
 			
-		}
+		}*/
 		}
 		
 		return result;

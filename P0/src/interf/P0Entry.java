@@ -15,4 +15,5 @@ public interface P0Entry extends Remote {
 	public String deleteRecord(String record) throws RemoteException;
 	//
 	//public String sendMessage(String message) throws RemoteException;
+	public String getRecord(String filename) throws RemoteException;
 }

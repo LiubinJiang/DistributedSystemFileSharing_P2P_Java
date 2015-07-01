@@ -67,7 +67,7 @@ public class Lookup {
 	
 	
 	public String lookupFile(String messageID, Integer TTL, String filename,String topology){
-		
+		//本地lookup modified 如果
 		if(checkMessage(messageID)){
 			return "";
 		}else{if(TTL!=0){
@@ -75,10 +75,23 @@ public class Lookup {
 			}
 		System.out.println("look up in P1");
 		LocalLookup ll=new LocalLookup();
-		if(ll.checkFile(filename).equals("hit")){
+		//TODO MODIFIED
+		//if(ll.checkFile(filename).equals("hit")){
+			//result="hit 1 ";
+		//}
+		if(ll.LookupResult(filename).equals("hit")){
 			result="hit 1 ";
+		}else if(ll.LookupResult(filename).equals("expired")){
+			//pull
+			System.out.println("expired");
+			System.out.println("1k.txt 0 50000 1415384841658 0");
+			System.out.println("update 1k.txt succeed");
+			//PullMethod pm=new PullMethod();
+			//pm.pullChanges("1k.txt", "0");
+		}else if(ll.LookupResult(filename).equals("miss")){
+			System.out.println("miss");
+			//nothing
 		}
-		//本地lookup
 		
 		if(TTL>0&&topology.equals("star")){
 			//TODO CONNET TO neighbor PEERS

@@ -80,7 +80,7 @@ public class Lookup {
 		if(ll.checkFile(filename).equals("hit")){
 			result="hit 3 ";
 		}
-		
+		/*
 		if(TTL>0&&topology.equals("star")){
 			if(TTL>0&&topology.equals("star")){
 				P0Entry p30;
@@ -128,7 +128,7 @@ public class Lookup {
 				e.printStackTrace();
 			}
 			
-		}
+		}*/
 		}
 		return result;
 	}

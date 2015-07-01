@@ -67,20 +67,39 @@ public class Lookup {
 	
 	public String lookupFile(String messageID, Integer TTL, String filename,String topology){
 		
-		if(checkMessage(messageID)){
-			return "";
-		}else{
+			System.out.println("LOOKUP.lookup");
 			if(TTL!=0){
 				addMessage(messageID);
 				}
-		System.out.println("look up in P0");
-		LocalLookup ll=new LocalLookup();
-		if(ll.checkFile(filename).equals("hit")){
-			result="hit 0 ";
-		}
-		//±¾µØlookup
+			System.out.println("look up in P0");
+			LocalLookup ll=new LocalLookup();
+			if(ll.checkFile(filename).equals("hit")){
+				result="hit 0 ";
+			}
+			//TODO
+			System.out.println("hit 0");
+			//TODO modified
 		
-		if(TTL>0&&topology.equals("star")){
+			P1Entry p01;
+			String temp=null;
+			try {
+				p01 = (P1Entry)Naming.lookup(serverP1);
+				temp=p01.obtainNode(messageID,TTL,filename,topology);
+				if(temp!=null)
+					result=result+temp;
+			} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		return result;
+		
+		/*if(TTL>0&&topology.equals("star")){
 			P1Entry p01;
 			String temp=null;
 			try {
@@ -159,8 +178,7 @@ public class Lookup {
 		}
 		//TODO
 		System.out.println(result);
-		}
-		return result;
+		}*/
 	}
 	
 	public Lookup(){}
